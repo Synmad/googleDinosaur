@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public float JumpForce;
+
     public float score;
+
     public float scoreIncrease;
+
+    //public GameOverScript GameOverScript;
 
     [SerializeField]
     bool isGrounded = false;
-    bool isAlive = true;
 
     Rigidbody2D rb;
-
     public Text scoreText;
     
 
@@ -23,13 +26,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -41,7 +37,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (isAlive)
         {
             scoreText.text = "SCORE: " + (int)score;
             score += scoreIncrease * Time.deltaTime;
@@ -56,8 +51,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            isAlive = false;
-            Time.timeScale = 0;
+            SceneManager.LoadScene("SampleScene");
+            //GameOverScript.showGameOver();
+            //GameOverScript.gameOver = true;
         }
     }
 }

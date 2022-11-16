@@ -30,13 +30,6 @@ public class ObstacleGenerator : MonoBehaviour
         ObstacleInstantiate.GetComponent<Obstacle>().obstacleGenerator = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    { 
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (speed < maxSpeed) 
